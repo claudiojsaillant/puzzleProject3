@@ -7,17 +7,20 @@
     <title>Document</title>
     <style>
         table {
+            margin: 0 auto;
             border-collapse: separate;
             border-spacing: 5px;
             font-family: arial, sans-serif;
-            width: 500px;
+            width: 50%;
         }
 
         td,
         th { 
             border: 3px solid black;
             text-align: left;
-            padding: 40px;
+            padding: 20px;
+            
+            height: 45px;
             text-align: center;
             background-color: red;
         }
@@ -35,10 +38,13 @@
     <h1>
         hello
     </h1>
+    <label for="myrow">Rows: </label>
+    <input type="text" name="myrow" id="rows">
+    <label for="mycol">Cols: </label>
+    <input type="text" name="mycol" id="cols">
+    <br><br>
+    <button id="startBtn">Start</button> <button id="shuffle">Shuffle</button>
     <table id="myTable">
-        <!-- <tr>
-            <td>hello</td>
-        </tr> -->
       
     </table>
 </body>

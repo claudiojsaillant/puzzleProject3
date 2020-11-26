@@ -1,4 +1,5 @@
 let MAIN_ARR;
+let winStr = "";
 
 const elementsSwapper = (obj1, obj2) => {
   // create marker element and insert it where obj1 is
@@ -14,6 +15,15 @@ const elementsSwapper = (obj1, obj2) => {
   // remove temporary marker node
   temp.parentNode.removeChild(temp);
 }
+
+const winCheck = () => {
+    let myStr = ""
+    MAIN_ARR.forEach(el => {
+      myStr += el.join("");
+    })
+    return myStr === winStr;
+}
+
 
 const swapNeighbor = (spaceEl, currEl) => {
   let tempRow = currEl.getAttribute("row");
@@ -39,8 +49,10 @@ const shuffleTable = () => {
 }
 
 const tableCreator = (row, col) => {
+    
     let count = 0;
-    let table = document.getElementById("myTable")
+    let table = document.getElementById("myTable");
+    table.innerHTML = "";
     let arr = [];
     for(let i = 0; i < row; i++){
         
@@ -68,7 +80,11 @@ const tableCreator = (row, col) => {
         arr.push(arrRow);
         table.appendChild(newRow);    
     }
+    winStr = ""
     MAIN_ARR = arr;
+    MAIN_ARR.forEach(el => {
+      winStr += el.join("");
+    });
 }
 
 
@@ -108,8 +124,7 @@ const checkIndex = (i, j, arr) => {
   return true;
 };
 
-tableCreator(4,4);
-shuffleTable();
+
 
 document.addEventListener('click', (event) => {
   const isClickable = event.target.nodeName === "TD";
@@ -123,19 +138,36 @@ document.addEventListener('click', (event) => {
       if(neighbors.includes(currElValue)){
 
         swapNeighbor(spaceEl, currEl);
-
+        if(winCheck()){
+          alert("You won")
+        }
       } else {
       
         // alert("Can't swap elements that are not neighbors with the space");
 
       }
      
-      
-
-
   }
 
 });
+document.getElementById("shuffle").style.visibility = "hidden";
+
+  document.getElementById("startBtn").addEventListener('click', () => {
+    console.log("Click the btn!");
+    let rows = parseInt(document.getElementById("rows").value);
+    let cols = parseInt(document.getElementById("cols").value);
+    if(rows === NaN || cols === NaN){
+      alert("Rows and Cols have to be a integer number.");
+    } else {
+      tableCreator(rows, cols);
+      document.getElementById("shuffle").style.visibility = "visible";
+    }
+
+  });
+
+  document.getElementById("shuffle").addEventListener('click', () => {
+    shuffleTable();
+  })
 
 
 
