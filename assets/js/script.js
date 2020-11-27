@@ -191,7 +191,7 @@ document.getElementById("startBtn").addEventListener("click", () => {
     }
   
     if(cols === 4){
-      image = prompt("Images available: press 1 for apple, 2 for elephant, 3 for mario and 4 for react");
+      image = prompt("Images available: Insert 1 for apple, 2 for elephant, 3 for mario and 4 for react");
       tableCreator(rows, cols);
       pictureChanger(imgObj[parseInt(image)]);
     } else {
