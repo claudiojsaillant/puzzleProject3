@@ -27,9 +27,8 @@ const winCheck = () => {
 const swapNeighbor = (spaceEl, currEl) => {
   let tempRow = currEl.getAttribute("row");
   let tempCol = currEl.getAttribute("col");
-  temp = MAIN_ARR[spaceEl.getAttribute("row")][spaceEl.getAttribute("col")];
-  MAIN_ARR[spaceEl.getAttribute("row")][spaceEl.getAttribute("col")] =
-    MAIN_ARR[tempRow][tempCol];
+  let temp = MAIN_ARR[spaceEl.getAttribute("row")][spaceEl.getAttribute("col")];
+  MAIN_ARR[spaceEl.getAttribute("row")][spaceEl.getAttribute("col")] = MAIN_ARR[tempRow][tempCol];
   MAIN_ARR[tempRow][tempCol] = temp;
   currEl.setAttribute("col", spaceEl.getAttribute("col"));
   currEl.setAttribute("row", spaceEl.getAttribute("row"));
@@ -178,13 +177,27 @@ document.getElementById("shuffle").style.visibility = "hidden";
 
 document.getElementById("startBtn").addEventListener("click", () => {
   console.log("Click the btn!");
-  let rows = parseInt(document.getElementById("rows").value);
-  let cols = parseInt(document.getElementById("cols").value);
+  let el = document.getElementById("sizes");
+  let rows = parseInt(el.options[el.selectedIndex].getAttribute("row"));
+  let cols = parseInt(el.options[el.selectedIndex].getAttribute("col"));
   if (rows === NaN || cols === NaN) {
     alert("Rows and Cols have to be a integer number.");
   } else {
-    tableCreator(rows, cols);
-    pictureChanger("400.png")
+    let imgObj = {
+      1: "./assets/img/apple.png",
+      2: "./assets/img/elephant.png",
+      3: "./assets/img/mario.png",
+      4: "./assets/img/react.png"
+    }
+  
+    if(cols === 4){
+      image = prompt("Images available: press 1 for apple, 2 for elephant, 3 for mario and 4 for react");
+      tableCreator(rows, cols);
+      pictureChanger(imgObj[parseInt(image)]);
+    } else {
+      tableCreator(rows, cols);
+    }
+
     document.getElementById("shuffle").style.visibility = "visible";
   }
 });

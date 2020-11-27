@@ -16,10 +16,10 @@
 
         td,
         th { 
+            color: chartreuse;
             border: 3px solid black;
             text-align: left;
             padding: 20px;
-            
             height: 45px;
             text-align: center;
             background-color: red;
@@ -28,67 +28,6 @@
         .space{
             background-color: white;
         }
-
-        /* #cube1 {
-            background-image: url("https://assets.stickpng.com/thumbs/584df37c6a5ae41a83ddee05.png");
-            background-position: 0px 0px;
-        }
-        #cube2 {
-            background-image: url("https://assets.stickpng.com/thumbs/584df37c6a5ae41a83ddee05.png");
-            background-position: -100px 0px;
-        }
-        #cube3 {
-            background-image: url("https://assets.stickpng.com/thumbs/584df37c6a5ae41a83ddee05.png");
-            background-position: -200px 0px;
-        }
-        #cube4 {
-            background-image: url("https://assets.stickpng.com/thumbs/584df37c6a5ae41a83ddee05.png");
-            background-position: -300px 0px;
-        }
-        #cube5 {
-            background-image: url("https://assets.stickpng.com/thumbs/584df37c6a5ae41a83ddee05.png");
-            background-position: 0px -100px;
-        }
-        #cube6 {
-            background-image: url("https://assets.stickpng.com/thumbs/584df37c6a5ae41a83ddee05.png");
-            background-position: -100px -100px;
-        }
-        #cube7 {
-            background-image: url("https://assets.stickpng.com/thumbs/584df37c6a5ae41a83ddee05.png");
-            background-position: -200px -100px;
-        }
-        #cube8 {
-            background-image: url("https://assets.stickpng.com/thumbs/584df37c6a5ae41a83ddee05.png");
-            background-position: -300px -100px;
-        }
-        #cube9 {
-            background-image: url("https://assets.stickpng.com/thumbs/584df37c6a5ae41a83ddee05.png");
-            background-position: 0px -200px;
-        }
-        #cube10 {
-            background-image: url("https://assets.stickpng.com/thumbs/584df37c6a5ae41a83ddee05.png");
-            background-position: -100px -200px;
-        }
-        #cube11 {
-            background-image: url("https://assets.stickpng.com/thumbs/584df37c6a5ae41a83ddee05.png");
-            background-position: -200px -200px;
-        }
-        #cube12 {
-            background-image: url("https://assets.stickpng.com/thumbs/584df37c6a5ae41a83ddee05.png");
-            background-position: -300px -200px;
-        }
-        #cube13 {
-            background-image: url("https://assets.stickpng.com/thumbs/584df37c6a5ae41a83ddee05.png");
-            background-position: 0px -300px;
-        }
-        #cube14 {
-            background-image: url("https://assets.stickpng.com/thumbs/584df37c6a5ae41a83ddee05.png");
-            background-position: -100px -300px;
-        }
-        #cube15 {
-            background-image: url("https://assets.stickpng.com/thumbs/584df37c6a5ae41a83ddee05.png");
-            background-position: -200px -300px;
-        } */
 
 
 
@@ -102,16 +41,21 @@
     <h1>
         hello
     </h1>
-    <label for="myrow">Rows: </label>
-    <input type="text" name="myrow" id="rows">
-    <label for="mycol">Cols: </label>
-    <input type="text" name="mycol" id="cols">
+    <label for="sizes">Choose a size:</label>
+
+    <select name="sizes" id="sizes">
+      <option id="fourH" row="4" col ="4">4 x 4</option>
+      <option id="eightH" row="8" col ="8">8 x 8</option>
+      <option id="tenH" row="10" col ="10"> 10 x 10</option>
+      <option id="twelveH" row="12" col ="12">12 x 12</option>
+    </select>
+    
     <br><br>
     <button id="startBtn">Start</button> <button id="shuffle">Shuffle</button>
     <table id="myTable">
       
     </table>
 </body>
-<script src="./script.js"></script>
+<script src="./assets/js/script.js"></script>
 
 </html>
