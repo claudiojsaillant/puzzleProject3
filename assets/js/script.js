@@ -22,7 +22,7 @@ const winCheck = () => {
   MAIN_ARR.forEach((el) => {
     myStr += el.join("");
   });
-  // Comparing current string vs winString created when the table was also created. 
+  // Comparing current string vs winString created when the table was also created.
   return myStr === winStr;
 };
 
@@ -32,7 +32,8 @@ const swapNeighbor = (spaceEl, currEl) => {
   let tempCol = currEl.getAttribute("col");
   // Swapping same elements in MAIN ARR so we can keep track of the squares
   let temp = MAIN_ARR[spaceEl.getAttribute("row")][spaceEl.getAttribute("col")];
-  MAIN_ARR[spaceEl.getAttribute("row")][spaceEl.getAttribute("col")] = MAIN_ARR[tempRow][tempCol];
+  MAIN_ARR[spaceEl.getAttribute("row")][spaceEl.getAttribute("col")] =
+    MAIN_ARR[tempRow][tempCol];
   MAIN_ARR[tempRow][tempCol] = temp;
   // Swapping both elements attributes
   currEl.setAttribute("col", spaceEl.getAttribute("col"));
@@ -43,6 +44,11 @@ const swapNeighbor = (spaceEl, currEl) => {
   elementsSwapper(currEl, spaceEl);
   currEl.classList.add("animate__rollIn");
   spaceEl.classList.add("animate__rollOut");
+  setTimeout(function () {
+    spaceEl.classList.remove("animate__rollOut");
+    currEl.classList.remove("animate__rollIn");
+  }, 750);
+  
 };
 
 const shuffleTable = () => {
@@ -61,7 +67,6 @@ const shuffleTable = () => {
     swapNeighbor(spaceEl, currEl);
   }
 };
-
 
 const pictureChanger = (img) => {
   // Setting url pic for each cube
@@ -178,7 +183,7 @@ const checkIndex = (i, j, arr) => {
 document.addEventListener("click", (event) => {
   // Make sure we are clicking a cube
   let table = document.getElementById("myTable");
-  
+
   const isClickable = event.target.nodeName === "TD";
   if (isClickable) {
     let currEl = event.target;
@@ -191,19 +196,21 @@ document.addEventListener("click", (event) => {
       MAIN_ARR
     );
     // if the cube clicked is a neighbor
-    
+      console.log(currElValue);
+      console.log(neighbors);
     if (neighbors.includes(currElValue)) {
       // swap space and element
       swapNeighbor(spaceEl, currEl);
-      // also check if the use won after the swap 
+      // also check if the use won after the swap
       if (winCheck()) {
         alert("You won");
       }
-    } else { // current square is not a neighbor so it can't be moved.
-    table.classList.add("animate__jello")
-    setTimeout(function(){
-      table.classList.remove("animate__jello");
-    }, 700)
+    } else {
+      // current square is not a neighbor so it can't be moved.
+      table.classList.add("animate__jello");
+      setTimeout(function () {
+        table.classList.remove("animate__jello");
+      }, 700);
     }
   }
 });
@@ -214,7 +221,7 @@ document.getElementById("shuffle").style.visibility = "hidden";
 //Click start button
 document.getElementById("startBtn").addEventListener("click", () => {
   console.log("Click the btn!");
-  let el = document.getElementById("sizes"); 
+  let el = document.getElementById("sizes");
   // Get user's selected dimension from dropdown
   let rows = parseInt(el.options[el.selectedIndex].getAttribute("row"));
   let cols = parseInt(el.options[el.selectedIndex].getAttribute("col"));
@@ -227,15 +234,17 @@ document.getElementById("startBtn").addEventListener("click", () => {
       1: "./assets/img/apple.png",
       2: "./assets/img/elephant.png",
       3: "./assets/img/mario.png",
-      4: "./assets/img/react.png"
-    }
-  
-    if(cols === 4){
+      4: "./assets/img/react.png",
+    };
+
+    if (cols === 4) {
       // Get which image the use wants
-      image = prompt("Images available: Insert 1 for apple, 2 for elephant, 3 for mario and 4 for react");
+      image = prompt(
+        "Images available: Insert 1 for apple, 2 for elephant, 3 for mario and 4 for react"
+      );
       // Create the table with the dimesions the user gave (4 x 4)
       tableCreator(rows, cols);
-      // Change the picture because the dimesion is 4 x 4 
+      // Change the picture because the dimesion is 4 x 4
       pictureChanger(imgObj[parseInt(image)]);
     } else {
       // Create the table with the dimesions the user gave (8 x 8, 10 x 10, 12 x 12)
