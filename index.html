@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        /* rollIn
+rollOut */
+
         #main {
             width: 250px;
             margin: 0 auto;
@@ -21,7 +24,7 @@
         }
 
         td,
-        th { 
+        th {
             color: chartreuse;
             border: 3px solid black;
             text-align: left;
@@ -31,38 +34,33 @@
             background-color: purple;
         }
 
-        .space{
+        .space {
             background-color: white;
         }
-
-
-
-
-
- 
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
 <body>
-    <div id="main">
+    <div class="animate__animated animate__bounce" id="main">
         <h1>
             Puzzle game!
         </h1>
-    
+
         <label for="sizes">Choose a size:</label>
         <select name="sizes" id="sizes">
-          <option id="fourH" row="4" col ="4">4 x 4</option>
-          <option id="eightH" row="8" col ="8">8 x 8</option>
-          <option id="tenH" row="10" col ="10"> 10 x 10</option>
-          <option id="twelveH" row="12" col ="12">12 x 12</option>
+            <option id="fourH" row="4" col="4">4 x 4</option>
+            <option id="eightH" row="8" col="8">8 x 8</option>
+            <option id="tenH" row="10" col="10"> 10 x 10</option>
+            <option id="twelveH" row="12" col="12">12 x 12</option>
         </select>
-        
+
         <br><br>
         <button id="startBtn">Start</button> <button id="shuffle">Shuffle</button>
     </div>
 
-    <table id="myTable">
-      
+    <table class="animate__animated" id="myTable">
+
     </table>
 </body>
 <script src="./assets/js/script.js"></script>

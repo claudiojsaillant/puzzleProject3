@@ -41,6 +41,8 @@ const swapNeighbor = (spaceEl, currEl) => {
   spaceEl.setAttribute("row", tempRow);
   // Finnally swapping the elements
   elementsSwapper(currEl, spaceEl);
+  currEl.classList.add("animate__rollIn");
+  spaceEl.classList.add("animate__rollOut");
 };
 
 const shuffleTable = () => {
@@ -119,6 +121,7 @@ const tableCreator = (row, col) => {
       // Atributes used to keep track of the cubes with --> MAIN_ARR indexes
       newCol.setAttribute("value", count);
       newCol.setAttribute("id", "cube" + count);
+      newCol.classList.add("animate__animated");
       newCol.setAttribute("row", i);
       newCol.setAttribute("col", g);
       newRow.appendChild(newCol);
@@ -174,6 +177,8 @@ const checkIndex = (i, j, arr) => {
 
 document.addEventListener("click", (event) => {
   // Make sure we are clicking a cube
+  let table = document.getElementById("myTable");
+  
   const isClickable = event.target.nodeName === "TD";
   if (isClickable) {
     let currEl = event.target;
@@ -186,6 +191,7 @@ document.addEventListener("click", (event) => {
       MAIN_ARR
     );
     // if the cube clicked is a neighbor
+    
     if (neighbors.includes(currElValue)) {
       // swap space and element
       swapNeighbor(spaceEl, currEl);
@@ -194,7 +200,10 @@ document.addEventListener("click", (event) => {
         alert("You won");
       }
     } else { // current square is not a neighbor so it can't be moved.
-      // alert("Can't swap elements that are not neighbors with the space");
+    table.classList.add("animate__jello")
+    setTimeout(function(){
+      table.classList.remove("animate__jello");
+    }, 700)
     }
   }
 });
