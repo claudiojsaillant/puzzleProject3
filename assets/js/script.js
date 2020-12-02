@@ -183,7 +183,6 @@ const checkIndex = (i, j, arr) => {
 document.addEventListener("click", (event) => {
   // Make sure we are clicking a cube
   let table = document.getElementById("myTable");
-
   const isClickable = event.target.nodeName === "TD";
   if (isClickable) {
     let currEl = event.target;
@@ -196,8 +195,6 @@ document.addEventListener("click", (event) => {
       MAIN_ARR
     );
     // if the cube clicked is a neighbor
-      console.log(currElValue);
-      console.log(neighbors);
     if (neighbors.includes(currElValue)) {
       // swap space and element
       swapNeighbor(spaceEl, currEl);
