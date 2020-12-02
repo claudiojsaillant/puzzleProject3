@@ -204,6 +204,7 @@ document.addEventListener("click", (event) => {
       // also check if the use won after the swap
       if (winCheck()) {
         alert("You won");
+        stopTimer();
       }
     } else {
       // current square is not a neighbor so it can't be moved.
@@ -252,6 +253,7 @@ document.getElementById("startBtn").addEventListener("click", () => {
     }
     // Make shuffle button visible since the table is created
     document.getElementById("shuffle").style.visibility = "visible";
+    startTimer();
   }
 });
 
@@ -259,3 +261,76 @@ document.getElementById("startBtn").addEventListener("click", () => {
 document.getElementById("shuffle").addEventListener("click", () => {
   shuffleTable();
 });
+
+// Audio
+
+let audioElement = document.getElementById("audio");
+let timerElement = document.getElementById("timer");
+let seconds = 0;
+let playTime = 5 * 60 * 1000; // Minutes for game length
+
+let timer; // Interval for updating timer
+let timeout; // Timeout for game length
+
+timerElement.style.visibility = "hidden"; // Hide the timer on load
+
+function playAudio() {
+  audioElement.play();
+}
+
+function pauseAudio() {
+  audioElement.pause();
+}
+
+function showTimer() {
+  timerElement.style.visibility = "visible";
+}
+
+function hideTimer() {
+  timerElement.style.visibility = "hidden";
+}
+
+function formatTime() {
+  let nMinutes = Math.floor(seconds / 60);
+  let nSeconds = seconds - nMinutes * 60;
+  
+  nMinutes = nMinutes.toString();
+  nSeconds = nSeconds.toString();
+
+  nMinutes = nMinutes.length == 1 ? "0" + nMinutes : nMinutes;
+  nSeconds = nSeconds.length == 1 ? "0" + nSeconds : nSeconds;
+  
+  return nMinutes + ":" + nSeconds;
+}
+
+function updateTime() {
+  seconds++;
+  timerElement.innerHTML = formatTime();
+}
+
+function startTimer() {
+  if (timer || timeout) {
+    stopTimer();  // In case the startTimer function is called while running
+  }
+
+  showTimer();
+  playAudio();
+
+  timer = setInterval(updateTime, 1000);
+  timeout = setTimeout(() => { lose(); }, playTime);
+}
+
+function lose() {
+  stopTimer();
+  alert("You ran out of time!");
+}
+
+function stopTimer() {
+  clearInterval(timer);
+  clearTimeout(timeout);
+  pauseAudio();
+  hideTimer();
+
+  seconds = 0;
+  timerElement.innerHTML = "";
+}
